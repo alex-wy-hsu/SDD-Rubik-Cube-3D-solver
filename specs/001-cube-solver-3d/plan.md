@@ -37,6 +37,11 @@
 
 **目標平台**：現代瀏覽器 (Chrome 90+, Firefox 88+, Safari 15+) with WebGL 2.0 + WebGPU support
 
+**開發環境**：
+- 本機整合：Docker Compose (一鍵啟動 web/api/db)
+- 容器化：Dockerfile for web, api (v1 不含 slm-service)
+- 生產伺服器：Gunicorn + Uvicorn workers for FastAPI
+
 **專案類型**：網頁應用 (Frontend + Backend + SLM Service)
 
 **性能目標**：
@@ -110,6 +115,12 @@ specs/[###-feature]/
 ### 原始碼（儲存庫根目錄）
 
 ```text
+infra/
+└── docker/
+    ├── docker-compose.local.yml  # 本機整合開發環境
+    ├── Dockerfile.web            # Next.js 容器
+    └── Dockerfile.api            # FastAPI 容器
+
 frontend/
 ├── src/
 │   ├── app/                # Next.js 14 app router
@@ -190,6 +201,59 @@ slm-service/
 1. **frontend**：Next.js + Three.js，client-side 3D 渲染
 2. **backend**：FastAPI，核心業務邏輯和演算法求解
 3. **slm-service**：獨立 SLM 推理服務，可獨立擴展和部署
+
+## 本機開發環境 (Docker Compose)
+
+為了讓開發者在本機能用單一指令啟動整套系統，提供 `infra/docker/docker-compose.local.yml`。
+
+### 目標
+- 一鍵啟動 `web`（Next.js）、`api`（FastAPI）、`db`（PostgreSQL）
+- 開發者不需要先手動安裝與設定 PostgreSQL
+- 用於本機端到端測試：scramble → solve → 前端播放 moves → solved
+
+### Compose 服務配置
+
+**服務**：
+- `db`
+  - PostgreSQL 16
+  - Volume 保存資料（避免容器重建後資料消失）
+  - 對外暴露 `5432`（僅供本機調試）
+- `api`
+  - FastAPI (Dockerfile.api)
+  - 環境變數 `DATABASE_URL` 連線到 `db`
+  - 對外暴露 `8000`
+  - Health check: `GET /healthz`, Readiness check: `GET /readyz`
+- `web`
+  - Next.js (Dockerfile.web)
+  - `NEXT_PUBLIC_API_BASE_URL` 指向 `api`
+  - 對外暴露 `3000`
+
+> **v1 範圍**：先不納入 `slm-service`，等 solver 端到端跑通後再加入。
+
+### 工作流程
+
+**啟動**（build + run）：
+```bash
+docker compose -f infra/docker/docker-compose.local.yml up --build
+```
+
+**停止**：
+```bash
+docker compose -f infra/docker/docker-compose.local.yml down
+```
+
+### 環境變數（最低需求）
+
+**api**：
+- `DATABASE_URL=postgresql+psycopg://postgres:postgres@db:5432/cube`
+
+**web**：
+- `NEXT_PUBLIC_API_BASE_URL=http://localhost:8000`
+
+### 成功判定
+- `web` 可在 `http://localhost:3000` 打開
+- `api` 健康檢查通過：`curl http://localhost:8000/healthz` 回傳 200
+- `api` 就緒檢查通過：`curl http://localhost:8000/readyz` 回傳 200（確認 DB 連線）
 
 ## 複雜度追蹤
 

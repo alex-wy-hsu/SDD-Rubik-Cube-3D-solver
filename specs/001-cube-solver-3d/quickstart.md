@@ -122,7 +122,39 @@ huggingface-cli download Qwen/Qwen2.5-0.5B-ONNX --local-dir ./
 
 ## 運行服務
 
-### 開發模式（全部服務）
+### 方法 A：Docker Compose（推薦用於本機整合測試）
+
+**一鍵啟動完整環境**（web + api + db）：
+
+```bash
+# 在專案根目錄
+docker compose -f infra/docker/docker-compose.local.yml up --build
+```
+
+此命令會啟動：
+- **web**：Next.js 前端 (http://localhost:3000)
+- **api**：FastAPI 後端 (http://localhost:8000)
+- **db**：PostgreSQL 16 (localhost:5432)
+
+**停止服務**：
+```bash
+docker compose -f infra/docker/docker-compose.local.yml down
+```
+
+**驗證健康狀態**：
+```bash
+# 健康檢查
+curl http://localhost:8000/healthz
+
+# 就緒檢查（含 DB 連線）
+curl http://localhost:8000/readyz
+```
+
+> **注意**：v1 不包含 `slm-service`，等 solver 版本端到端測試通過後再加入。
+
+---
+
+### 方法 B：手動運行（開發模式）
 
 使用根目錄的便利腳本：
 

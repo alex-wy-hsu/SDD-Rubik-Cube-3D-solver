@@ -296,6 +296,58 @@ CREATE TABLE solve_sessions (
 
 ---
 
+### 7. Docker Compose 本機開發環境
+
+**決策**：使用 `docker-compose.local.yml` 一鍵啟動 web + api + db 三服務
+
+**理由**：
+- 消除開發者手動安裝 PostgreSQL 的步驟，降低入門門檻
+- 確保所有開發者使用相同的環境配置（PostgreSQL 16, Python 3.11+, Node 18+）
+- 支援本機端到端測試流程：scramble → solve → 前端播放 → solved
+- Volume 持久化數據，容器重建不丟失開發數據
+
+**配置策略**：
+- **服務定義**：
+  - `db`：PostgreSQL 16, port 5432, volume `postgres-data`
+  - `api`：FastAPI (Dockerfile.api), port 8000, depends_on `db`
+  - `web`：Next.js (Dockerfile.web), port 3000, depends_on `api`
+- **環境變數**：
+  - api: `DATABASE_URL=postgresql+psycopg://postgres:postgres@db:5432/cube`
+  - web: `NEXT_PUBLIC_API_BASE_URL=http://localhost:8000`
+- **健康檢查**：
+  - `/healthz`：基本服務狀態
+  - `/readyz`：DB 連線就緒狀態
+
+**v1 範圍**：
+- 先不包含 `slm-service`（減少初始複雜度）
+- 等演算法求解器端到端測試通過後再加入 SLM 服務
+
+**工作流程**：
+```bash
+# 啟動所有服務
+docker compose -f infra/docker/docker-compose.local.yml up --build
+
+# 驗證
+curl http://localhost:8000/healthz  # 健康檢查
+curl http://localhost:8000/readyz   # DB 連線檢查
+open http://localhost:3000          # 前端介面
+
+# 停止
+docker compose -f infra/docker/docker-compose.local.yml down
+```
+
+**替代方案考慮**：
+- **手動啟動**：需要開發者自行安裝 PostgreSQL、配置環境變數，錯誤機會多
+- **Dev Containers**：VS Code 特定，不適合使用其他 IDE 的開發者
+- **Kubernetes (Minikube)**：過度工程，開發環境不需要編排複雜度
+
+**參考資源**：
+- Docker Compose 文檔：https://docs.docker.com/compose/
+- Multi-stage builds：https://docs.docker.com/build/building/multi-stage/
+- Health checks：https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck
+
+---
+
 ## 研究結果摘要
 
 | 研究項目 | 決策 | 風險等級 | 緩解措施 |
@@ -306,6 +358,7 @@ CREATE TABLE solve_sessions (
 | 演算法求解 | Kociemba (Python) | 低 | 已驗證實作 |
 | 硬體加速 | WebGPU → WebGL → WASM | 低 | 多層回退策略 |
 | 狀態持久化 | PostgreSQL (Supabase) | 低 | 託管服務，自動備份 |
+| Docker 本機開發 | docker-compose.local.yml | 低 | 標準工具，簡化設置 |
 
 **未解決的問題**：無（所有關鍵技術決策已明確）
 
