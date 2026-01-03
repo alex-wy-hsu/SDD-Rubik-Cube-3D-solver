@@ -78,3 +78,16 @@ export function movesToString(moves: Move[]): string {
 export function stringToMoves(s: string): Move[] {
   return s.split(' ').filter(Boolean).map(stringToMove);
 }
+
+/**
+ * Check if a move is valid
+ * @param move The move to validate
+ * @returns true if move is valid
+ */
+export function isValidMove(move: any): boolean {
+  if (!move || typeof move !== 'object') return false;
+  if (!['U', 'D', 'L', 'R', 'F', 'B'].includes(move.face)) return false;
+  if (![1, -1, 2].includes(move.direction)) return false;
+  return true;
+}
+

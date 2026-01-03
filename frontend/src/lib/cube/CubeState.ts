@@ -36,7 +36,7 @@ export class CubeState {
   /**
    * Check if cube is in solved state
    */
-  isSolved(): boolean {
+  get isSolved(): boolean {
     // Check each face has all same colors
     const faces = ['U', 'R', 'F', 'D', 'L', 'B'];
     for (let i = 0; i < 6; i++) {
@@ -55,7 +55,7 @@ export class CubeState {
    * - Must have exactly 9 of each color
    * - Must form a valid configuration (no floating pieces)
    */
-  isValid(): boolean {
+  get isValid(): boolean {
     // Check length
     if (this.facelets.length !== 54) return false;
 
@@ -186,13 +186,28 @@ export class CubeState {
   }
 
   /**
+   * Create from facelet string
+   * @param facelets 54-character facelet string
+   */
+  static fromString(facelets: string): CubeState {
+    return new CubeState(facelets);
+  }
+
+  /**
+   * Create from JSON representation
+   */
+  static fromJSON(json: { facelets: string; isValid: boolean; isSolved: boolean }): CubeState {
+    return new CubeState(json.facelets);
+  }
+
+  /**
    * Convert to JSON representation
    */
   toJSON() {
     return {
       facelets: this.facelets,
-      isValid: this.isValid(),
-      isSolved: this.isSolved(),
+      isValid: this.isValid,
+      isSolved: this.isSolved,
     };
   }
 }

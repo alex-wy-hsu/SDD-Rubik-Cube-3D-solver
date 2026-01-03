@@ -118,16 +118,16 @@
 
 ### 用戶故事 1 的測試（TDD 強制）✅
 
-- [ ] T046 [P] [US1] 契約測試：POST /api/cube/validate (backend/tests/contract/test_cube_api.py)
-- [ ] T047 [P] [US1] 契約測試：POST /api/cube/apply-move (backend/tests/contract/test_cube_api.py)
-- [ ] T048 [P] [US1] 單元測試：CubeState.applyMove (frontend/tests/unit/cubeState.test.ts)
-- [ ] T049 [P] [US1] 單元測試：Move 轉換函數 (frontend/tests/unit/move.test.ts)
-- [ ] T050 [P] [US1] 單元測試：Cube3D 渲染邏輯 (frontend/tests/unit/cube3d.test.tsx)
-- [ ] T051 [P] [US1] 單元測試：HighlightEffect (frontend/tests/unit/highlightEffect.test.tsx)
-- [ ] T052 [US1] 整合測試：點選 → 高亮 → 旋轉 → 狀態更新 (frontend/tests/integration/manual-rotation.test.tsx)
-- [ ] T053 [US1] E2E 測試：相機旋轉不改變方塊狀態 (frontend/tests/e2e/camera.spec.ts)
-- [ ] T054 [US1] E2E 測試：手動旋轉流程 (frontend/tests/e2e/manual-rotation.spec.ts)
-- [ ] T055 [US1] 性能測試：動畫期間 FPS ≥30 (frontend/tests/performance/animation-fps.test.ts)
+- [X] T046 [P] [US1] 契約測試：POST /api/cube/validate (backend/tests/contract/test_cube_api.py)
+- [X] T047 [P] [US1] 契約測試：POST /api/cube/apply-move (backend/tests/contract/test_cube_api.py)
+- [X] T048 [P] [US1] 單元測試：CubeState.applyMove (frontend/tests/unit/cubeState.test.ts)
+- [X] T049 [P] [US1] 單元測試：Move 轉換函數 (frontend/tests/unit/move.test.ts)
+- [X] T050 [P] [US1] 單元測試：Cube3D 渲染邏輯 (frontend/tests/unit/cube3d.test.tsx)
+- [X] T051 [P] [US1] 單元測試：HighlightEffect (frontend/tests/unit/highlightEffect.test.tsx)
+- [X] T052 [US1] 整合測試：點選 → 高亮 → 旋轉 → 狀態更新 (frontend/tests/integration/manual-rotation.test.tsx)
+- [X] T053 [US1] E2E 測試：相機旋轉不改變方塊狀態 (frontend/tests/e2e/camera.spec.ts)
+- [X] T054 [US1] E2E 測試：手動旋轉流程 (frontend/tests/e2e/manual-rotation.spec.ts)
+- [X] T055 [US1] 性能測試：動畫期間 FPS ≥30 (frontend/tests/performance/animation-fps.test.ts)
 
 ### 用戶故事 1 的實作
 
@@ -135,36 +135,36 @@
 
 #### 後端 API
 
-- [ ] T056 [P] [US1] 實作 POST /api/cube/validate (backend/src/api/routes/cube.py)
-- [ ] T057 [P] [US1] 實作 POST /api/cube/apply-move (backend/src/api/routes/cube.py)
+- [X] T056 [P] [US1] 實作 POST /api/cube/validate (backend/src/api/routes/cube.py)
+- [X] T057 [P] [US1] 實作 POST /api/cube/apply-move (backend/src/api/routes/cube.py)
 
 #### Three.js 3D 渲染
 
-- [ ] T058 [P] [US1] 建立 Cube 元件 (frontend/src/components/Cube3D/Cube.tsx) - Canvas, Scene, Camera, Lighting
-- [ ] T059 [P] [US1] 建立 Layer 元件 (frontend/src/components/Cube3D/Layer.tsx) - 9 個 facelet 組成一層
-- [ ] T060 [P] [US1] 建立 Facelet 元件 (frontend/src/components/Cube3D/Facelet.tsx) - 單個方塊面片，標準配色
-- [ ] T061 [US1] 實作 OrbitControls (frontend/src/components/Cube3D/Cube.tsx) - 左鍵拖曳旋轉相機
-- [ ] T062 [US1] 實作點選檢測 (frontend/src/components/Cube3D/Facelet.tsx) - Raycaster, onClick handler
-- [ ] T063 [US1] 實作 HighlightEffect (frontend/src/components/Cube3D/HighlightEffect.tsx) - OutlinePass + 半透明覆蓋 + 脈動
-- [ ] T064 [US1] 實作脈動動畫 (frontend/src/components/Cube3D/HighlightEffect.tsx) - useFrame, 1.5-2s 週期, 1-2% 放大
+- [X] T058 [P] [US1] 建立 Cube 元件 (frontend/src/components/Cube3D/Cube.tsx) - Canvas, Scene, Camera, Lighting
+- [X] T059 [P] [US1] 建立 Layer 元件 (frontend/src/components/Cube3D/Layer.tsx) - 9 個 facelet 組成一層
+- [X] T060 [P] [US1] 建立 Facelet 元件 (frontend/src/components/Cube3D/Facelet.tsx) - 單個方塊面片，標準配色
+- [X] T061 [US1] 實作 OrbitControls (frontend/src/components/Cube3D/Cube.tsx) - 左鍵拖曳旋轉相機
+- [X] T062 [US1] 實作點選檢測 (frontend/src/components/Cube3D/Facelet.tsx) - Raycaster, onClick handler
+- [X] T063 [US1] 實作 HighlightEffect (frontend/src/components/Cube3D/HighlightEffect.tsx) - OutlinePass + 半透明覆蓋 + 脈動
+- [X] T064 [US1] 實作脈動動畫 (frontend/src/components/Cube3D/HighlightEffect.tsx) - useFrame, 1.5-2s 週期, 1-2% 放大
 
 #### 旋轉控制與動畫
 
-- [ ] T065 [P] [US1] 建立 RotationArrows 元件 (frontend/src/components/Controls/RotationArrows.tsx) - 順時針/逆時針箭頭
-- [ ] T066 [US1] 實作動畫管理 (frontend/src/lib/cube/Animation.ts) - AnimationQueue, 150-300ms 插值
-- [ ] T067 [US1] 實作層旋轉動畫 (frontend/src/components/Cube3D/Layer.tsx) - useFrame, quaternion slerp
-- [ ] T068 [US1] 整合 cubeStore 操作 (frontend/src/store/cubeStore.ts) - selectLayer, executeRotation, isAnimating flag
-- [ ] T069 [US1] 實作動畫期間禁用手動操作 (frontend/src/components/Controls/RotationArrows.tsx) - 檢查 isAnimating
+- [X] T065 [P] [US1] 建立 RotationArrows 元件 (frontend/src/components/Controls/RotationArrows.tsx) - 順時針/逆時針箭頭
+- [X] T066 [US1] 實作動畫管理 (frontend/src/lib/cube/Animation.ts) - AnimationQueue, 150-300ms 插值
+- [X] T067 [US1] 實作層旋轉動畫 (frontend/src/components/Cube3D/Layer.tsx) - useFrame, quaternion slerp
+- [X] T068 [US1] 整合 cubeStore 操作 (frontend/src/store/cubeStore.ts) - selectLayer, executeRotation, isAnimating flag
+- [X] T069 [US1] 實作動畫期間禁用手動操作 (frontend/src/components/Controls/RotationArrows.tsx) - 檢查 isAnimating
 
 #### 整合與優化
 
-- [ ] T070 [US1] 整合所有元件到主頁面 (frontend/src/app/page.tsx) - Cube + Controls
-- [ ] T071 [US1] 添加狀態驗證 (frontend/src/lib/cube/validator.ts) - 每次移動後檢查合法性
-- [ ] T072 [US1] 優化 Three.js 性能 (frontend/src/lib/three-utils/optimization.ts) - geometry 重用, frustum culling
-- [ ] T073 [US1] 添加錯誤處理和用戶反饋 (frontend/src/components/ErrorBoundary.tsx)
-- [ ] T074 [US1] 添加文檔註釋 (frontend/src/components/Cube3D/*.tsx JSDoc)
-- [ ] T075 [US1] 代碼審查：linting 通過，無警告
-- [ ] T076 [US1] 性能驗證：60 FPS 目標，P95 ≥30 FPS (frontend/tests/performance/rendering-fps.test.ts)
+- [X] T070 [US1] 整合所有元件到主頁面 (frontend/src/app/page.tsx) - Cube + Controls
+- [X] T071 [US1] 添加狀態驗證 (frontend/src/lib/cube/validator.ts) - 每次移動後檢查合法性
+- [X] T072 [US1] 優化 Three.js 性能 (frontend/src/lib/three-utils/optimization.ts) - geometry 重用, frustum culling
+- [X] T073 [US1] 添加錯誤處理和用戶反饋 (frontend/src/components/ErrorBoundary.tsx)
+- [X] T074 [US1] 添加文檔註釋 (frontend/src/components/Cube3D/*.tsx JSDoc)
+- [X] T075 [US1] 代碼審查：linting 通過，無警告
+- [X] T076 [US1] 性能驗證：60 FPS 目標，P95 ≥30 FPS (frontend/tests/performance/rendering-fps.test.ts)
 
 **檢查點**：用戶故事 1 完成 - 用戶可完整手動操作魔術方塊，此時已有可交付的 MVP
 
