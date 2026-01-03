@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Models (large files)
+models/*.onnx
+models/*.bin
+models/*.pt
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

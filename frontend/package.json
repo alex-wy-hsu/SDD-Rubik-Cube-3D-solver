@@ -1,0 +1,49 @@
+{
+  "name": "rubik-cube-solver-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "next": "14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^9.117.3",
+    "three": "^0.170.0",
+    "zustand": "^5.0.1",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/three": "^0.170.0",
+    "typescript": "^5",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.18",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "prettier": "^3.4.2",
+    "vitest": "^2.1.8",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@playwright/test": "^1.49.1",
+    "@vitest/coverage-v8": "^2.1.8",
+    "jsdom": "^25.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
