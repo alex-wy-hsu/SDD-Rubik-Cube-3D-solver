@@ -21,20 +21,20 @@
 
 **目的**：建立專案基礎結構和開發環境
 
-- [ ] T001 根據 plan.md 建立三服務目錄結構（frontend/, backend/, slm-service/, infra/docker/）
-- [ ] T002 [P] 初始化 frontend: Next.js 14 + TypeScript + pnpm (frontend/package.json, tsconfig.json)
-- [ ] T003 [P] 初始化 backend: Python 3.11+ + FastAPI + Poetry (backend/pyproject.toml, requirements.txt)
-- [ ] T004 [P] 初始化 slm-service: Python 3.11+ + ONNX Runtime (slm-service/requirements.txt)
-- [ ] T005 [P] 配置 ESLint + Prettier (frontend/.eslintrc.json, .prettierrc)
-- [ ] T006 [P] 配置 Ruff + Black (backend/ruff.toml, slm-service/ruff.toml)
-- [ ] T007 [P] 建立 Dockerfile.web (infra/docker/Dockerfile.web)
-- [ ] T008 [P] 建立 Dockerfile.api (infra/docker/Dockerfile.api)
-- [ ] T009 建立 docker-compose.local.yml (infra/docker/docker-compose.local.yml) - web/api/db 服務定義
-- [ ] T010 [P] 配置 Vitest + React Testing Library (frontend/vitest.config.ts, tests/setup.ts)
-- [ ] T011 [P] 配置 pytest + pytest-asyncio (backend/pytest.ini, conftest.py)
-- [ ] T012 建立 PostgreSQL schema (backend/database/schema.sql) - scrambles 和 solve_sessions 表
-- [ ] T013 [P] 建立 .env.example 檔案 (frontend/.env.example, backend/.env.example)
-- [ ] T014 建立 README.md 並引用 quickstart.md 作為主要設置指南
+- [X] T001 根據 plan.md 建立三服務目錄結構（frontend/, backend/, slm-service/, infra/docker/）
+- [X] T002 [P] 初始化 frontend: Next.js 14 + TypeScript + pnpm (frontend/package.json, tsconfig.json)
+- [X] T003 [P] 初始化 backend: Python 3.11+ + FastAPI + Poetry (backend/pyproject.toml, requirements.txt)
+- [X] T004 [P] 初始化 slm-service: Python 3.11+ + ONNX Runtime (slm-service/requirements.txt)
+- [X] T005 [P] 配置 ESLint + Prettier (frontend/.eslintrc.json, .prettierrc)
+- [X] T006 [P] 配置 Ruff + Black (backend/ruff.toml, slm-service/ruff.toml)
+- [X] T007 [P] 建立 Dockerfile.web (infra/docker/Dockerfile.web)
+- [X] T008 [P] 建立 Dockerfile.api (infra/docker/Dockerfile.api)
+- [X] T009 建立 docker-compose.local.yml (infra/docker/docker-compose.local.yml) - web/api/db 服務定義
+- [X] T010 [P] 配置 Vitest + React Testing Library (frontend/vitest.config.ts, tests/setup.ts)
+- [X] T011 [P] 配置 pytest + pytest-asyncio (backend/pytest.ini, conftest.py)
+- [X] T012 建立 PostgreSQL schema (backend/database/schema.sql) - scrambles 和 solve_sessions 表
+- [X] T013 [P] 建立 .env.example 檔案 (frontend/.env.example, backend/.env.example)
+- [X] T014 建立 README.md 並引用 quickstart.md 作為主要設置指南
 
 ---
 
@@ -46,24 +46,24 @@
 
 ### 核心數據模型（所有故事依賴）
 
-- [ ] T015 [P] 建立 Move 類型定義 (frontend/src/lib/cube/Move.ts) - Face, Direction, moveToString, stringToMove
-- [ ] T016 [P] 建立 CubeState 類別 (frontend/src/lib/cube/CubeState.ts) - facelets, isValid, isSolved, applyMove
-- [ ] T017 [P] 建立 Move 模型 (backend/src/models/move.py) - Face enum, Move dataclass, validation
-- [ ] T018 [P] 建立 CubeState 模型 (backend/src/models/cube_state.py) - CubeState dataclass, validation, apply_move
-- [ ] T019 實作 CubeState 驗證邏輯 (frontend/src/lib/cube/validator.ts) - 檢查 54 facelet, 顏色分佈, 可解性
-- [ ] T020 實作 CubeState 驗證邏輯 (backend/src/services/validation_service.py) - is_valid, is_solved
+- [X] T015 [P] 建立 Move 類型定義 (frontend/src/lib/cube/Move.ts) - Face, Direction, moveToString, stringToMove
+- [X] T016 [P] 建立 CubeState 類別 (frontend/src/lib/cube/CubeState.ts) - facelets, isValid, isSolved, applyMove
+- [X] T017 [P] 建立 Move 模型 (backend/src/models/move.py) - Face enum, Move dataclass, validation
+- [X] T018 [P] 建立 CubeState 模型 (backend/src/models/cube_state.py) - CubeState dataclass, validation, apply_move
+- [X] T019 實作 CubeState 驗證邏輯 (frontend/src/lib/cube/validator.ts) - 檢查 54 facelet, 顏色分佈, 可解性
+- [X] T020 實作 CubeState 驗證邏輯 (backend/src/services/validation_service.py) - is_valid, is_solved
 
 ### API 基礎設施
 
-- [ ] T021 建立 FastAPI 應用程式入口 (backend/src/api/main.py) - CORS, router 註冊, exception handlers
-- [ ] T022 [P] 實作健康檢查端點 (backend/src/api/routes/health.py) - GET /healthz, GET /readyz (含 DB 連線檢查)
-- [ ] T023 [P] 建立 API 客戶端 (frontend/src/services/api.ts) - axios 配置, 錯誤處理, 類型定義
-- [ ] T024 設置 SQLAlchemy (backend/src/database/models.py) - ScrambleModel, SolveSessionModel
-- [ ] T025 實作 database repository (backend/src/database/repository.py) - CRUD 操作, 連線管理
+- [X] T021 建立 FastAPI 應用程式入口 (backend/src/api/main.py) - CORS, router 註冊, exception handlers
+- [X] T022 [P] 實作健康檢查端點 (backend/src/api/routes/health.py) - GET /healthz, GET /readyz (含 DB 連線檢查)
+- [X] T023 [P] 建立 API 客戶端 (frontend/src/services/api.ts) - axios 配置, 錯誤處理, 類型定義
+- [X] T024 設置 SQLAlchemy (backend/src/database/models.py) - ScrambleModel, SolveSessionModel
+- [X] T025 實作 database repository (backend/src/database/repository.py) - CRUD 操作, 連線管理
 
 ### 狀態管理（前端）
 
-- [ ] T026 建立 Zustand store 架構 (frontend/src/store/cubeStore.ts) - cubeState, selectedLayer, isAnimating, solverType
+- [X] T026 建立 Zustand store 架構 (frontend/src/store/cubeStore.ts) - cubeState, selectedLayer, isAnimating, solverType
 
 **檢查點**：基礎就緒 - 可開始並行實作用戶故事
 
