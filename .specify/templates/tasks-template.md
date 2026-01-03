@@ -8,7 +8,7 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Per Constitution Principle II (Testing Standards - NON-NEGOTIABLE), tests are MANDATORY and must be written FIRST before implementation. All tasks below include test tasks that MUST be completed before corresponding implementation tasks.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -79,23 +79,28 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 1 (MANDATORY per Constitution) ✅
 
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+> **CONSTITUTION PRINCIPLE II: Write these tests FIRST, ensure they FAIL before implementation**
 
 - [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
 - [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T012 [P] [US1] Unit tests for [component] in tests/unit/test_[name].py (≥80% coverage)
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+> **Prerequisites**: Tests T010-T012 MUST be written and FAILING before starting implementation
 
-**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+- [ ] T013 [P] [US1] Create [Entity1] model in src/models/[entity1].py
+- [ ] T014 [P] [US1] Create [Entity2] model in src/models/[entity2].py
+- [ ] T015 [US1] Implement [Service] in src/services/[service].py (depends on T013, T014)
+- [ ] T016 [US1] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T017 [US1] Add validation and error handling (Constitution: clear error messages)
+- [ ] T018 [US1] Add logging and documentation (Constitution: document public APIs)
+- [ ] T019 [US1] Code review and linting verification (Constitution: zero warnings)
+- [ ] T020 [US1] Performance validation (Constitution: verify benchmarks met)
+
+**Checkpoint**: At this point, User Story 1 should be fully functional, tested (≥80% coverage), and independently validated
 
 ---
 
@@ -105,19 +110,27 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 2 (MANDATORY per Constitution) ✅
 
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+> **CONSTITUTION PRINCIPLE II: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T021 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T022 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T023 [P] [US2] Unit tests for [component] in tests/unit/test_[name].py (≥80% coverage)
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
+> **Prerequisites**: Tests T021-T023 MUST be written and FAILING before starting implementation
 
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
+- [ ] T024 [P] [US2] Create [Entity] model in src/models/[entity].py
+- [ ] T025 [US2] Implement [Service] in src/services/[service].py
+- [ ] T026 [US2] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T027 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T028 [US2] Add validation, error handling, and documentation
+- [ ] T029 [US2] Code review and linting verification
+- [ ] T030 [US2] Performance validation
+
+**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently with full test coverage
 
 ---
 
@@ -127,18 +140,26 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 3 (MANDATORY per Constitution) ✅
 
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+> **CONSTITUTION PRINCIPLE II: Write these tests FIRST, ensure they FAIL before implementation**
+
+- [ ] T031 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
+- [ ] T032 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T033 [P] [US3] Unit tests for [component] in tests/unit/test_[name].py (≥80% coverage)
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+> **Prerequisites**: Tests T031-T033 MUST be written and FAILING before starting implementation
 
-**Checkpoint**: All user stories should now be independently functional
+- [ ] T034 [P] [US3] Create [Entity] model in src/models/[entity].py
+- [ ] T035 [US3] Implement [Service] in src/services/[service].py
+- [ ] T036 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T037 [US3] Add validation, error handling, and documentation
+- [ ] T038 [US3] Code review and linting verification
+- [ ] T039 [US3] Performance validation
+
+**Checkpoint**: All user stories should now be independently functional with complete test coverage
 
 ---
 
@@ -148,14 +169,17 @@ Examples of foundational tasks (adjust based on your project):
 
 ## Phase N: Polish & Cross-Cutting Concerns
 
-**Purpose**: Improvements that affect multiple user stories
+**Purpose**: Improvements that affect multiple user stories and final quality verification
 
 - [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
+- [ ] TXXX Code cleanup and refactoring (Constitution: DRY, single responsibility)
+- [ ] TXXX Performance optimization across all stories (Constitution: verify 60 FPS, <10ms, etc.)
+- [ ] TXXX Final test coverage verification (Constitution: ≥80% unit, 100% integration)
+- [ ] TXXX Security hardening and edge case validation
+- [ ] TXXX Accessibility verification (Constitution: keyboard navigation)
+- [ ] TXXX Final code review and linting verification (Constitution: zero warnings)
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX Constitution compliance audit
 
 ---
 
@@ -178,11 +202,13 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Tests (if included) MUST be written and FAIL before implementation
+- Tests MUST be written and FAIL before implementation (Constitution Principle II - NON-NEGOTIABLE)
 - Models before services
 - Services before endpoints
 - Core implementation before integration
-- Story complete before moving to next priority
+- Code review and linting before story completion
+- Performance validation before story completion
+- Story complete (with ≥80% test coverage) before moving to next priority
 
 ### Parallel Opportunities
 
@@ -198,11 +224,12 @@ Examples of foundational tasks (adjust based on your project):
 ## Parallel Example: User Story 1
 
 ```bash
-# Launch all tests for User Story 1 together (if tests requested):
+# Launch all tests for User Story 1 together (MANDATORY per Constitution):
 Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
 Task: "Integration test for [user journey] in tests/integration/test_[name].py"
+Task: "Unit tests for [component] in tests/unit/test_[name].py"
 
-# Launch all models for User Story 1 together:
+# After tests are written and FAILING, launch all models for User Story 1 together:
 Task: "Create [Entity1] model in src/models/[entity1].py"
 Task: "Create [Entity2] model in src/models/[entity2].py"
 ```
@@ -245,7 +272,9 @@ With multiple developers:
 - [P] tasks = different files, no dependencies
 - [Story] label maps task to specific user story for traceability
 - Each user story should be independently completable and testable
-- Verify tests fail before implementing
+- **Constitution Principle II**: Tests MUST be written first and MUST fail before implementing
+- **Constitution Principle I**: Code MUST pass linting with zero warnings
+- **Constitution Principle IV**: Verify performance benchmarks after implementation
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence

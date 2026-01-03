@@ -95,6 +95,32 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
+### Non-Functional Requirements (Constitution-Mandated)
+
+#### Code Quality Requirements
+- All code MUST follow single responsibility and DRY principles
+- Public APIs MUST be documented
+- Code MUST pass linting with zero warnings
+
+#### Testing Requirements (NON-NEGOTIABLE)
+- All features MUST have tests written before implementation (TDD)
+- Unit test coverage MUST be ≥80%
+- All user stories MUST have integration tests
+- Tests MUST cover edge cases and error conditions
+
+#### User Experience Requirements
+- Visual elements MUST follow consistent rendering conventions
+- User actions MUST provide immediate feedback (<200ms or loading indicator)
+- Error messages MUST be clear and actionable
+- UI MUST support keyboard navigation
+
+#### Performance Requirements
+- 3D rendering MUST maintain ≥60 FPS during animations
+- Cube state validation MUST complete in <10ms
+- Solution generation MUST complete in <5 seconds
+- Memory usage MUST stay below 200MB
+- Initial load MUST complete in <3 seconds
+
 ### Key Entities *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]

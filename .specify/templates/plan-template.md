@@ -31,7 +31,36 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### I. Code Quality
+- [ ] Single Responsibility: Each module has clear, focused purpose
+- [ ] DRY Principle: No code duplication; shared logic extracted
+- [ ] Naming: Descriptive, consistent names throughout
+- [ ] Documentation: Public APIs and complex logic documented
+- [ ] Code Review: Review process defined and enforced
+
+### II. Testing Standards (NON-NEGOTIABLE)
+- [ ] Test-First: Tests written before implementation
+- [ ] Coverage: 80% unit test minimum, 100% integration for user stories
+- [ ] Test Organization: Tests organized by type (unit/integration/contract)
+- [ ] Test Independence: Tests runnable independently
+- [ ] Edge Cases: Boundary conditions and errors covered
+
+### III. User Experience Consistency
+- [ ] Visual Consistency: Rendering conventions defined
+- [ ] Cube Notation: Standard Singmaster notation used
+- [ ] Interaction Patterns: Input handling consistent across features
+- [ ] Feedback: User actions provide immediate feedback
+- [ ] Error Messages: Clear, actionable error messages
+- [ ] Accessibility: Keyboard navigation supported
+
+### IV. Performance Requirements
+- [ ] Rendering: 60 FPS target for 3D operations
+- [ ] Algorithm: <10ms validation, <5s solving, <100ms scrambling
+- [ ] Memory: <200MB footprint, no memory leaks
+- [ ] Load Time: <3s initial load, <500ms feature init
+- [ ] Scalability: Support 100+ move states without degradation
+
+**Violations Requiring Justification**: [List any principle violations and document in Complexity Tracking section]
 
 ## Project Structure
 
