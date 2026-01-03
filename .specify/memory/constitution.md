@@ -1,189 +1,168 @@
 <!--
-SYNC IMPACT REPORT
+同步影響報告
 ==================
-Version Change: N/A → 1.0.0
-Initial constitution ratification establishing four core principles.
+版本變更：N/A → 1.0.0
+初始憲章批准，建立四項核心原則。
 
-Modified Principles: N/A (Initial version)
+修改的原則：N/A（初始版本）
 
-Added Sections:
-- Core Principles (4 principles: Code Quality, Testing Standards, UX Consistency, Performance)
-- Development Standards
-- Governance
+新增章節：
+- 核心原則（4 項原則：代碼品質、測試標準、用戶體驗一致性、性能要求）
+- 開發標準
+- 治理規範
 
-Removed Sections: N/A (Initial version)
+移除章節：N/A（初始版本）
 
-Templates Requiring Updates:
-✅ plan-template.md - Constitution Check section aligned with new principles
-✅ spec-template.md - Requirements section aligned with quality/performance standards
-✅ tasks-template.md - Task categorization reflects test-first and quality principles
-✅ checklist-template.md - No changes required (generic template)
-✅ agent-file-template.md - No changes required (auto-generated)
+需要更新的模板：
+✅ plan-template.md - 憲章檢查部分與新原則對齊
+✅ spec-template.md - 需求部分與品質/性能標準對齊
+✅ tasks-template.md - 任務分類反映測試優先和品質原則
+✅ checklist-template.md - 無需更改（通用模板）
+✅ agent-file-template.md - 無需更改（自動生成）
 
-Follow-up TODOs: None
+後續待辦事項：無
 -->
 
-# SDD Rubik Cube 3D Solver Constitution
+# SDD 魔術方塊 3D 求解器憲章
 
-## Core Principles
+## 核心原則
 
-### I. Code Quality (NON-NEGOTIABLE)
+### 一、代碼品質（不可妥協）
 
-Code MUST be maintainable, readable, and follow established patterns:
+代碼必須具備可維護性、可讀性，並遵循既定模式：
 
-- **Single Responsibility**: Each module, class, and function MUST have one clear purpose
-- **DRY Principle**: Code duplication MUST be eliminated; shared logic extracted to reusable
-  components
-- **Naming Conventions**: Names MUST be descriptive and consistent; avoid abbreviations unless
-  domain-standard (e.g., RGB, HTTP)
-- **Documentation**: Public APIs, complex algorithms, and non-obvious logic MUST include inline
-  documentation
-- **Code Reviews**: All code changes MUST be reviewed by at least one other developer before merge
-- **Linting**: Code MUST pass automated linting checks with zero warnings; configuration defined
-  in repository
+- **單一職責**：每個模組、類別和函數必須有一個明確的目的
+- **DRY 原則**：必須消除代碼重複；將共享邏輯提取為可重用的元件
+- **命名規範**：名稱必須具描述性且一致；除非是領域標準（例如 RGB、HTTP），否則避免使用縮寫
+- **文檔**：公共 API、複雜演算法和非顯而易見的邏輯必須包含內聯文檔
+- **代碼審查**：所有代碼變更必須在合併前由至少一位其他開發者審查
+- **Linting**：代碼必須通過自動化 linting 檢查且零警告；配置文件定義在儲存庫中
 
-**Rationale**: High code quality reduces technical debt, improves team velocity, and enables
-confident refactoring. The Rubik's Cube solver involves complex algorithms that require clear,
-maintainable code to ensure correctness and extensibility.
+**理由**：高品質代碼可減少技術債務、提升團隊效率，並使重構更有信心。魔術方塊求解器涉及複雜演算法，需要清晰、可維護的代碼以確保正確性和可擴展性。
 
-### II. Testing Standards (NON-NEGOTIABLE)
+### 二、測試標準（不可妥協）
 
-Test-Driven Development (TDD) is mandatory; comprehensive test coverage is required:
+測試驅動開發（TDD）是強制性的；需要全面的測試覆蓋率：
 
-- **Test-First**: Tests MUST be written before implementation code; tests must fail initially
-- **Red-Green-Refactor**: Strictly enforce the TDD cycle: write failing test → implement minimum
-  code to pass → refactor
-- **Coverage Requirements**:
-  - Unit tests: 80% minimum coverage for all modules
-  - Integration tests: All public APIs and user scenarios must be tested
-  - Contract tests: All external interfaces (if any) must have contract validation
-- **Test Organization**: Tests MUST be organized by type (unit, integration, contract) in separate
-  directories
-- **Test Independence**: Each test MUST be independently runnable and not depend on execution order
-- **Edge Cases**: Tests MUST cover boundary conditions, error states, and invalid inputs
+- **測試優先**：測試必須在實作代碼之前編寫；測試必須初始失敗
+- **紅綠重構**：嚴格執行 TDD 循環：編寫失敗的測試 → 實作最小代碼使其通過 → 重構
+- **覆蓋率要求**：
+  - 單元測試：所有模組最低 80% 覆蓋率
+  - 整合測試：所有公共 API 和用戶場景必須測試
+  - 契約測試：所有外部介面（如有）必須具備契約驗證
+- **測試組織**：測試必須按類型（單元、整合、契約）在獨立目錄中組織
+- **測試獨立性**：每個測試必須能獨立運行，不依賴執行順序
+- **邊界情況**：測試必須涵蓋邊界條件、錯誤狀態和無效輸入
 
-**Rationale**: The Rubik's Cube solver has complex state management and algorithmic logic with many
-edge cases. TDD ensures correctness, prevents regressions, and provides living documentation of
-expected behavior.
+**理由**：魔術方塊求解器具有複雜的狀態管理和演算法邏輯，有許多邊界情況。TDD 確保正確性、防止回歸，並提供預期行為的活文檔。
 
-### III. User Experience Consistency
+### 三、用戶體驗一致性
 
-User interactions MUST be intuitive, predictable, and consistent:
+用戶互動必須直觀、可預測且一致：
 
-- **Visual Consistency**: 3D rendering MUST use consistent colors, orientation, and perspective
-  conventions
-- **Cube Notation**: MUST follow standard Rubik's Cube notation (Singmaster notation) for moves
-  and algorithms
-- **Interaction Patterns**: User inputs (mouse, keyboard, touch) MUST behave consistently across
-  all features
-- **Feedback**: User actions MUST provide immediate visual or textual feedback; no silent failures
-- **Error Messages**: Error messages MUST be clear, actionable, and user-friendly (not technical
-  stack traces)
-- **Performance Perception**: Operations MUST feel responsive; use loading indicators for operations
-  >200ms
-- **Accessibility**: UI MUST be usable with keyboard navigation; provide alternative text for visual
-  elements
+- **視覺一致性**：3D 渲染必須使用一致的顏色、方向和透視慣例
+- **方塊標記法**：必須遵循標準魔術方塊標記法（Singmaster 標記法）用於移動和演算法
+- **互動模式**：用戶輸入（滑鼠、鍵盤、觸控）在所有功能中必須行為一致
+- **反饋**：用戶操作必須提供即時的視覺或文字反饋；不允許靜默失敗
+- **錯誤訊息**：錯誤訊息必須清晰、可操作且用戶友好（非技術堆疊追蹤）
+- **性能感知**：操作必須感覺響應迅速；對於超過 200ms 的操作使用載入指示器
+- **無障礙性**：UI 必須支援鍵盤導航；為視覺元素提供替代文字
 
-**Rationale**: A 3D cube solver is inherently visual and interactive. Consistent UX reduces learning
-curve and frustration, making the tool accessible to both beginners and speedcubers.
+**理由**：3D 方塊求解器本質上是視覺化和互動性的。一致的 UX 降低學習曲線和挫折感，使工具對初學者和速解者都易於使用。
 
-### IV. Performance Requirements
+### 四、性能要求
 
-The application MUST meet quantifiable performance benchmarks:
+應用程式必須滿足可量化的性能基準：
 
-- **Rendering Performance**:
-  - 3D cube rendering MUST maintain 60 FPS during animations and rotations
-  - Frame drops below 30 FPS are unacceptable
-- **Algorithm Performance**:
-  - Cube state validation MUST complete in <10ms
-  - Solution generation for solvable states MUST complete in <5 seconds for optimal solutions
-  - Scramble generation MUST complete in <100ms
-- **Memory Constraints**:
-  - Application memory footprint MUST stay below 200MB during normal operation
-  - No memory leaks; long-running sessions must maintain stable memory usage
-- **Load Time**:
-  - Initial application load MUST complete in <3 seconds
-  - Feature initialization MUST complete in <500ms
-- **Scalability**:
-  - Must support cube states up to 100 moves deep without performance degradation
-  - Must handle rapid user inputs (>10 moves/second) without dropping frames
+- **渲染性能**：
+  - 3D 方塊渲染在動畫和旋轉期間必須維持 60 FPS
+  - 幀率低於 30 FPS 是不可接受的
+- **演算法性能**：
+  - 方塊狀態驗證必須在 <10ms 內完成
+  - 可解狀態的解法生成必須在 <5 秒內完成最優解
+  - 打亂生成必須在 <100ms 內完成
+- **記憶體限制**：
+  - 應用程式記憶體佔用在正常運行時必須保持在 200MB 以下
+  - 不允許記憶體洩漏；長時間運行的會話必須保持穩定的記憶體使用
+- **載入時間**：
+  - 初始應用程式載入必須在 <3 秒內完成
+  - 功能初始化必須在 <500ms 內完成
+- **可擴展性**：
+  - 必須支援深度達 100 步的方塊狀態而不降低性能
+  - 必須處理快速的用戶輸入（>10 步/秒）而不掉幀
 
-**Rationale**: Performance directly impacts user satisfaction and utility. Slow rendering creates
-a frustrating experience, while slow solving defeats the purpose of an automated solver.
-Performance benchmarks ensure the tool remains practical and competitive.
+**理由**：性能直接影響用戶滿意度和實用性。緩慢的渲染會造成令人沮喪的體驗，而緩慢的求解會違背自動求解器的目的。性能基準確保工具保持實用性和競爭力。
 
-## Development Standards
+## 開發標準
 
-### Spec-Driven Development (SDD)
+### 規格驅動開發（SDD）
 
-All features MUST follow the SDD workflow:
+所有功能必須遵循 SDD 工作流程：
 
-1. **Specification First**: Create detailed spec with user stories, requirements, and acceptance
-   criteria
-2. **Planning**: Define technical approach, architecture, and task breakdown
-3. **Test-First**: Write tests for each user story before implementation
-4. **Incremental Implementation**: Build features story-by-story, validating independence
-5. **Validation**: Verify each story works independently before proceeding
+1. **規格優先**：建立詳細規格，包含用戶故事、需求和驗收標準
+2. **規劃**：定義技術方法、架構和任務分解
+3. **測試優先**：在實作之前為每個用戶故事編寫測試
+4. **分階段實作**：逐個故事構建功能，驗證獨立性
+5. **驗證**：在繼續之前驗證每個故事獨立運作
 
-### Quality Gates
+### 品質閘門
 
-Before merging any code:
+在合併任何代碼之前：
 
-- [ ] All tests pass (unit, integration, contract as applicable)
-- [ ] Code coverage meets thresholds (80% unit, 100% integration for user stories)
-- [ ] Linting passes with zero warnings
-- [ ] Code review approved by at least one reviewer
-- [ ] Performance benchmarks met (if applicable to change)
-- [ ] Documentation updated (README, inline docs, specs)
-- [ ] Constitution compliance verified
+- [ ] 所有測試通過（單元、整合、契約測試，視情況而定）
+- [ ] 代碼覆蓋率滿足閾值（80% 單元測試，100% 用戶故事整合測試）
+- [ ] Linting 通過且零警告
+- [ ] 代碼審查由至少一位審查者批准
+- [ ] 滿足性能基準（如適用於變更）
+- [ ] 文檔已更新（README、內聯文檔、規格）
+- [ ] 已驗證憲章符合性
 
-### Commit Standards
+### 提交標準
 
-- Commits MUST follow Conventional Commits format: `type(scope): description`
-- Types: `feat`, `fix`, `docs`, `refactor`, `test`, `perf`, `chore`
-- Commits MUST be atomic and focused; one logical change per commit
-- Commit messages MUST reference related spec/task numbers when applicable
+- 提交必須遵循約定式提交格式：`type(scope): description`
+- 類型：`feat`、`fix`、`docs`、`refactor`、`test`、`perf`、`chore`
+- 提交必須是原子性且專注的；每次提交一個邏輯變更
+- 提交訊息在適用時必須參考相關的規格/任務編號
 
-## Governance
+## 治理規範
 
-### Authority
+### 權力
 
-This constitution supersedes all other development practices and conventions. Any conflicts between
-this document and other guidelines must be resolved in favor of the constitution.
+本憲章取代所有其他開發實踐和慣例。本文件與其他指導原則之間的任何衝突必須以憲章為準。
 
-### Amendment Process
+### 修正程序
 
-1. Proposed amendments MUST be documented in a separate proposal document
-2. Amendments require review and approval by project maintainers
-3. Version must be incremented per semantic versioning:
-   - **MAJOR**: Backward incompatible changes (removing/redefining principles)
-   - **MINOR**: Adding new principles or sections
-   - **PATCH**: Clarifications, wording improvements, typo fixes
-4. Amendments take effect immediately upon ratification
-5. After amendment, dependent templates and docs MUST be updated within 1 week
+1. 提議的修正必須在單獨的提案文件中記錄
+2. 修正需要項目維護者的審查和批准
+3. 版本必須按照語意化版本控制遞增：
+   - **MAJOR**：向後不相容的變更（移除/重新定義原則）
+   - **MINOR**：新增原則或章節
+   - **PATCH**：澄清、措辭改進、筆誤修正
+4. 修正在批准後立即生效
+5. 修正後，相關模板和文檔必須在1週內更新
 
-### Compliance Review
+### 符合性審查
 
-- All code reviews MUST explicitly verify constitution compliance
-- Violations MUST be justified and documented in complexity tracking
-- Repeated violations without justification are grounds for code rejection
+- 所有代碼審查必須明確驗證憲章符合性
+- 違規必須在複雜度追蹤中註明理由並記錄
+- 未經註明理由的重複違規是代碼拒絕的理由
 
-### Complexity Justification
+### 複雜度註明
 
-If a feature requires violating constitution principles, it MUST:
+如果某功能需要違反憲章原則，必須：
 
-- Document the specific violation
-- Explain why the violation is necessary
-- Describe what simpler alternatives were rejected and why
-- Include this justification in the feature plan
+- 記錄具體違規項
+- 解釋為何違規是必要的
+- 描述被拒絕的更簡單替代方案及其原因
+- 在功能規劃中包含此註明
 
-### Enforcement
+### 執行
 
-Constitution compliance is enforced through:
+憲章符合性通過以下方式執行：
 
-- Automated checks (linting, test coverage, performance benchmarks)
-- Manual code review verification
-- Pre-merge quality gates
-- CI/CD pipeline integration
+- 自動化檢查（linting、測試覆蓋率、性能基準）
+- 手動代碼審查驗證
+- 合併前品質閘門
+- CI/CD 管道整合
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-03 | **Last Amended**: 2026-01-03
+**版本**：1.0.0 | **批准日期**：2026-01-03 | **最後修正**：2026-01-03

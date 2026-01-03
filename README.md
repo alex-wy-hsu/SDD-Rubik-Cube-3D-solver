@@ -1,2 +1,3 @@
-# SDD-Rubik-Cube-3D-solver
-Spec-Driven Development Rubik’s Cube Solver  A Rubik’s Cube solving tool built with a Spec-Driven Development (SDD) approach. The cube state, valid moves, constraints, and solving goals are specified first, then implemented and validated incrementally. This project demonstrates applying SDD to algorithmic problem solving.
+# SDD 魔術方塊 3D 求解器
+
+規格驅動開發魔術方塊求解器。這是一個採用規格驅動開發（SDD）方法構建的魔術方塊求解工具。方塊狀態、有效移動、約束條件和求解目標首先被規格化，然後逐步實作和驗證。本專案展示了將 SDD 應用於演算法問題求解的方法。

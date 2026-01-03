@@ -1,91 +1,89 @@
-# Implementation Plan: [FEATURE]
+# 實作計劃：[功能名稱]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**分支**：`[###-feature-name]` | **日期**：[DATE] | **規格**：[link]
+**輸入**：來自 `/specs/[###-feature-name]/spec.md` 的功能規格
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**注意**：此模板由 `/speckit.plan` 命令填寫。請參閱 `.specify/templates/commands/plan.md` 了解執行工作流程。
 
-## Summary
+## 摘要
 
-[Extract from feature spec: primary requirement + technical approach from research]
+[從功能規格中提取：主要需求 + 研究中的技術方法]
 
-## Technical Context
+## 技術背景
 
 <!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
+  需要執行的操作：將本節中的內容替換為專案的技術細節。
+  此處的結構以建議性質呈現，以指導迭代過程。
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**語言/版本**：[例如：Python 3.11、Swift 5.9、Rust 1.75 或需要澄清]  
+**主要依賴項**：[例如：FastAPI、UIKit、LLVM 或需要澄清]  
+**儲存**：[如適用，例如：PostgreSQL、CoreData、檔案 或 N/A]  
+**測試**：[例如：pytest、XCTest、cargo test 或需要澄清]  
+**目標平台**：[例如：Linux 伺服器、iOS 15+、WASM 或需要澄清]
+**專案類型**：[單一/網頁/行動 - 決定原始碼結構]  
+**性能目標**：[特定領域，例如：1000 req/s、10k lines/sec、60 fps 或需要澄清]  
+**限制條件**：[特定領域，例如：<200ms p95、<100MB 記憶體、離線可用 或需要澄清]  
+**規模/範圍**：[特定領域，例如：10k 用戶、1M LOC、50 個畫面 或需要澄清]
 
-## Constitution Check
+## 憲章檢查
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+*閘門：必須在第 0 階段研究前通過。在第 1 階段設計後重新檢查。*
 
-### I. Code Quality
-- [ ] Single Responsibility: Each module has clear, focused purpose
-- [ ] DRY Principle: No code duplication; shared logic extracted
-- [ ] Naming: Descriptive, consistent names throughout
-- [ ] Documentation: Public APIs and complex logic documented
-- [ ] Code Review: Review process defined and enforced
+### 一、代碼品質
+- [ ] 單一職責：每個模組有清晰、專注的目的
+- [ ] DRY 原則：無代碼重複；共享邏輯已提取
+- [ ] 命名：整體使用描述性、一致的名稱
+- [ ] 文檔：公共 API 和複雜邏輯已記錄
+- [ ] 代碼審查：審查流程已定義並執行
 
-### II. Testing Standards (NON-NEGOTIABLE)
-- [ ] Test-First: Tests written before implementation
-- [ ] Coverage: 80% unit test minimum, 100% integration for user stories
-- [ ] Test Organization: Tests organized by type (unit/integration/contract)
-- [ ] Test Independence: Tests runnable independently
-- [ ] Edge Cases: Boundary conditions and errors covered
+### 二、測試標準（不可妥協）
+- [ ] 測試優先：測試在實作前編寫
+- [ ] 覆蓋率：單元測試最低 80%，用戶故事整合測試 100%
+- [ ] 測試組織：測試按類型組織（單元/整合/契約）
+- [ ] 測試獨立性：測試可獨立運行
+- [ ] 邊界情況：邊界條件和錯誤已覆蓋
 
-### III. User Experience Consistency
-- [ ] Visual Consistency: Rendering conventions defined
-- [ ] Cube Notation: Standard Singmaster notation used
-- [ ] Interaction Patterns: Input handling consistent across features
-- [ ] Feedback: User actions provide immediate feedback
-- [ ] Error Messages: Clear, actionable error messages
-- [ ] Accessibility: Keyboard navigation supported
+### 三、用戶體驗一致性
+- [ ] 視覺一致性：渲染慣例已定義
+- [ ] 方塊標記法：使用標準 Singmaster 標記法
+- [ ] 互動模式：跨功能的輸入處理保持一致
+- [ ] 反饋：用戶操作提供即時反饋
+- [ ] 錯誤訊息：清晰、可操作的錯誤訊息
+- [ ] 無障礙性：支援鍵盤導航
 
-### IV. Performance Requirements
-- [ ] Rendering: 60 FPS target for 3D operations
-- [ ] Algorithm: <10ms validation, <5s solving, <100ms scrambling
-- [ ] Memory: <200MB footprint, no memory leaks
-- [ ] Load Time: <3s initial load, <500ms feature init
-- [ ] Scalability: Support 100+ move states without degradation
+### 四、性能要求
+- [ ] 渲染：3D 操作目標 60 FPS
+- [ ] 演算法：<10ms 驗證、<5s 求解、<100ms 打亂
+- [ ] 記憶體：<200MB 佔用，無記憶體洩漏
+- [ ] 載入時間：<3s 初始載入、<500ms 功能初始化
+- [ ] 可擴展性：支援 100+ 步移動狀態而不降低性能
 
-**Violations Requiring Justification**: [List any principle violations and document in Complexity Tracking section]
+**需要註明理由的違規**：[列出任何原則違規並在複雜度追蹤部分記錄]
 
-## Project Structure
+## 專案結構
 
-### Documentation (this feature)
+### 文檔（此功能）
 
 ```text
 specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+├── plan.md              # 本檔案（/speckit.plan 命令輸出）
+├── research.md          # 第 0 階段輸出（/speckit.plan 命令）
+├── data-model.md        # 第 1 階段輸出（/speckit.plan 命令）
+├── quickstart.md        # 第 1 階段輸出（/speckit.plan 命令）
+├── contracts/           # 第 1 階段輸出（/speckit.plan 命令）
+└── tasks.md             # 第 2 階段輸出（/speckit.tasks 命令 - 不由 /speckit.plan 建立）
 ```
 
-### Source Code (repository root)
+### 原始碼（儲存庫根目錄）
 <!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
+  需要執行的操作：將下面的佔位符樹狀結構替換為此功能的具體佈局。
+  刪除未使用的選項，並用實際路徑擴展所選結構（例如：apps/admin、packages/something）。
+  交付的計劃不得包含選項標籤。
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+# [如未使用請移除] 選項 1：單一專案（預設）
 src/
 ├── models/
 ├── services/
@@ -97,7 +95,7 @@ tests/
 ├── integration/
 └── unit/
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+# [如未使用請移除] 選項 2：網頁應用程式（當偵測到 "frontend" + "backend" 時）
 backend/
 ├── src/
 │   ├── models/
@@ -112,22 +110,21 @@ frontend/
 │   └── services/
 └── tests/
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
+# [如未使用請移除] 選項 3：行動應用 + API（當偵測到 "iOS/Android" 時）
 api/
-└── [same as backend above]
+└── [同上述 backend]
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+ios/ 或 android/
+└── [平台特定結構：功能模組、UI 流程、平台測試]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**結構決策**：[記錄所選結構並參考上述捕獲的實際目錄]
 
-## Complexity Tracking
+## 複雜度追蹤
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+> **僅在憲章檢查有必須註明理由的違規時填寫**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| 違規項 | 為何需要 | 被拒絕的更簡單替代方案及原因 |
+|--------|---------|---------------------------|
+| [例如：第 4 個專案] | [當前需求] | [為何 3 個專案不足夠] |
+| [例如：Repository 模式] | [具體問題] | [為何直接存取資料庫不足夠] |
