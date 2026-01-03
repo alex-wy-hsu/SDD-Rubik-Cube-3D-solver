@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: Rubik's Cube Solver API
+  description: 3D 魔術方塊求解器後端 API 規範
+  version: 1.0.0
+  contact:
+    name: SDD Rubik Cube Team
+
+servers:
+  - url: http://localhost:8000
+    description: 開發環境
+  - url: https://api.rubik-solver.example.com
+    description: 生產環境
+
+tags:
+  - name: cube
+    description: 方塊狀態操作
+  - name: scramble
+    description: 打亂管理
+  - name: solve
+    description: 求解操作
+
+paths:
+  /api/cube/validate:
+    post:
+      tags: [cube]
+      summary: 驗證方塊狀態合法性
+      description: 檢查 54 個 facelet 配置是否形成有效的魔術方塊狀態
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - facelets
+              properties:
+                facelets:
+                  type: string
+                  description: 54 字元的 facelet 字串（URFDLB 順序）
+                  pattern: '^[URFDLB]{54}$'
+                  example: "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
+      responses:
+        '200':
+          description: 驗證結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_valid:
+                    type: boolean
+                  is_solved:
+                    type: boolean
+                  error_message:
+                    type: string
+                    nullable: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/cube/apply-move:
+    post:
+      tags: [cube]
+      summary: 應用移動到方塊狀態
+      description: 執行單個移動並返回新的方塊狀態
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - facelets
+                - move
+              properties:
+                facelets:
+                  type: string
+                  pattern: '^[URFDLB]{54}$'
+                move:
+                  $ref: '#/components/schemas/Move'
+      responses:
+        '200':
+          description: 應用移動後的新狀態
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CubeState'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/scramble/generate:
+    post:
+      tags: [scramble]
+      summary: 生成新的打亂序列
+      description: 使用指定 seed 生成 25 次隨機移動的打亂
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seed:
+                  type: string
+                  description: 可選的 seed，未提供則自動生成
+                  example: "abc123def456"
+      responses:
+        '201':
+          description: 成功生成打亂
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scramble'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/scramble/{seed}:
+    get:
+      tags: [scramble]
+      summary: 根據 seed 獲取打亂
+      description: 使用相同 seed 重現相同的打亂序列
+      parameters:
+        - name: seed
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "abc123def456"
+      responses:
+        '200':
+          description: 打亂詳情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scramble'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/solve:
+    post:
+      tags: [solve]
+      summary: 使用演算法求解方塊
+      description: 使用 Kociemba 或類似演算法計算最優解法
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - facelets
+              properties:
+                facelets:
+                  type: string
+                  pattern: '^[URFDLB]{54}$'
+                scramble_id:
+                  type: string
+                  format: uuid
+                  description: 可選的關聯打亂 ID
+      responses:
+        '200':
+          description: 求解成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Solution'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '422':
+          description: 方塊狀態無法求解
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: "Invalid cube state: unsolvable configuration"
+
+  /api/solve/history:
+    get:
+      tags: [solve]
+      summary: 獲取求解歷史記錄
+      description: 查詢過去的求解記錄，支援分頁和篩選
+      parameters:
+        - name: solver_type
+          in: query
+          schema:
+            type: string
+            enum: [algorithm, slm]
+          description: 按求解器類型篩選
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: 求解記錄列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Solution'
+                  total:
+                    type: integer
+                  limit:
+                    type: integer
+                  offset:
+                    type: integer
+
+components:
+  schemas:
+    Move:
+      type: object
+      required:
+        - face
+        - direction
+      properties:
+        face:
+          type: string
+          enum: [U, D, L, R, F, B]
+          description: 面的標記（使用 Singmaster 標記法）
+        direction:
+          type: integer
+          enum: [1, -1, 2]
+          description: 方向（1=順時針90°, -1=逆時針90°, 2=180°）
+      example:
+        face: "U"
+        direction: 1
+
+    CubeState:
+      type: object
+      required:
+        - facelets
+        - is_valid
+        - is_solved
+      properties:
+        facelets:
+          type: string
+          pattern: '^[URFDLB]{54}$'
+          description: 54 個 facelet 的顏色字串
+        is_valid:
+          type: boolean
+          description: 狀態是否合法
+        is_solved:
+          type: boolean
+          description: 方塊是否已解
+      example:
+        facelets: "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB"
+        is_valid: true
+        is_solved: true
+
+    Scramble:
+      type: object
+      required:
+        - seed
+        - moves
+        - move_count
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: 打亂的唯一標識符
+        seed:
+          type: string
+          description: 用於重現的 seed
+          example: "abc123def456"
+        moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/Move'
+          minItems: 25
+          maxItems: 25
+        move_count:
+          type: integer
+          const: 25
+          description: 移動次數（固定為 25）
+        created_at:
+          type: string
+          format: date-time
+      example:
+        id: "550e8400-e29b-41d4-a716-446655440000"
+        seed: "abc123def456"
+        moves:
+          - { face: "U", direction: 1 }
+          - { face: "R", direction: -1 }
+          - { face: "F", direction: 2 }
+        move_count: 25
+        created_at: "2026-01-03T10:30:00Z"
+
+    Solution:
+      type: object
+      required:
+        - solver_type
+        - moves
+        - move_count
+        - compute_time_ms
+        - success
+      properties:
+        id:
+          type: string
+          format: uuid
+        scramble_id:
+          type: string
+          format: uuid
+          nullable: true
+        solver_type:
+          type: string
+          enum: [algorithm, slm]
+          description: 使用的求解器類型
+        moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/Move'
+        move_count:
+          type: integer
+          minimum: 0
+        compute_time_ms:
+          type: number
+          format: float
+          description: 計算耗時（毫秒）
+        success:
+          type: boolean
+        error_message:
+          type: string
+          nullable: true
+          description: 失敗原因（如有）
+        created_at:
+          type: string
+          format: date-time
+      example:
+        id: "650e8400-e29b-41d4-a716-446655440001"
+        scramble_id: "550e8400-e29b-41d4-a716-446655440000"
+        solver_type: "algorithm"
+        moves:
+          - { face: "U", direction: 1 }
+          - { face: "R", direction: -1 }
+        move_count: 18
+        compute_time_ms: 125.5
+        success: true
+        error_message: null
+        created_at: "2026-01-03T10:31:00Z"
+
+  responses:
+    BadRequest:
+      description: 錯誤的請求參數
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                example: "Invalid facelets string: must be exactly 54 characters"
+
+    NotFound:
+      description: 資源未找到
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                example: "Scramble with seed 'abc123' not found"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: 可選的 API 金鑰認證（生產環境）
+
+security:
+  - ApiKeyAuth: []
+  - {} # 允許未認證訪問（開發環境）
