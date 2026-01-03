@@ -1,12 +1,13 @@
 """
 FastAPI application main entry point
 """
+import os
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
-import os
 
-from .routes import health, cube
+from .routes import cube, health, scramble
 
 
 @asynccontextmanager
@@ -43,6 +44,7 @@ app.add_middleware(
 # Register routers
 app.include_router(health.router, tags=["health"])
 app.include_router(cube.router, prefix="/api/cube", tags=["cube"])
+app.include_router(scramble.router)
 
 
 @app.get("/")

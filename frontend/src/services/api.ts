@@ -87,3 +87,5 @@ export const api = {
 };
 
 export default api;
+
+export { apiClient };

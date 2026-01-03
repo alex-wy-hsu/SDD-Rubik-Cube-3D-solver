@@ -39,7 +39,7 @@ class CubeStateResponse(BaseModel):
 async def validate_cube(request: ValidateRequest):
     """
     Validate a cube state
-    
+
     Checks:
     - 54 characters
     - Valid characters (U/R/F/D/L/B)
@@ -47,7 +47,7 @@ async def validate_cube(request: ValidateRequest):
     - Whether cube is solved
     """
     result = ValidationService.validate_cube_state(request.facelets)
-    
+
     return ValidateResponse(
         is_valid=result["is_valid"],
         is_solved=result["is_solved"],
@@ -59,26 +59,26 @@ async def validate_cube(request: ValidateRequest):
 async def apply_move(request: ApplyMoveRequest):
     """
     Apply a move to a cube state
-    
+
     Returns the new cube state after applying the move
     """
     # Validate input state
     is_valid, error = ValidationService.is_valid(request.facelets)
     if not is_valid:
         raise HTTPException(status_code=400, detail=error)
-    
+
     try:
         # Create cube state
         cube_state = CubeState.from_facelets(request.facelets)
-        
+
         # Parse and apply move
         move = Move(
             face=request.move["face"],
             direction=request.move["direction"]
         )
-        
+
         new_state = cube_state.apply_move(move)
-        
+
         return CubeStateResponse(
             facelets=new_state.facelets,
             is_valid=new_state.is_valid,

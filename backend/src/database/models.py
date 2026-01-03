@@ -1,11 +1,12 @@
 """
 SQLAlchemy database models
 """
-from sqlalchemy import Column, String, Integer, Float, Boolean, Text, TIMESTAMP, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID, JSONB
+import uuid
+
+from sqlalchemy import TIMESTAMP, Boolean, Column, Float, ForeignKey, Integer, String, Text
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
-import uuid
 
 Base = declarative_base()
 

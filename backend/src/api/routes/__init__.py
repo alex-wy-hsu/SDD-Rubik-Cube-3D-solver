@@ -1,6 +1,6 @@
 """
 API routes package
 """
-from . import health, cube
+from . import cube, health
 
 __all__ = ["health", "cube"]

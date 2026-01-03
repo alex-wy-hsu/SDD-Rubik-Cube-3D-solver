@@ -1,8 +1,8 @@
 """
 Models package
 """
-from .move import Face, Move, Direction, moves_to_string, string_to_moves
 from .cube_state import CubeState
+from .move import Direction, Face, Move, moves_to_string, string_to_moves
 
 __all__ = [
     "Face",

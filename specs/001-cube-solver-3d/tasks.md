@@ -79,30 +79,30 @@
 
 ### 用戶故事 4 的測試（TDD 強制）✅
 
-- [ ] T027 [P] [US4] 契約測試：POST /api/scramble/generate (backend/tests/contract/test_scramble_api.py)
-- [ ] T028 [P] [US4] 契約測試：GET /api/scramble/{seed} (backend/tests/contract/test_scramble_api.py)
-- [ ] T029 [P] [US4] 單元測試：ScrambleService (backend/tests/unit/test_scramble_service.py) - 確定性 RNG, 25 moves
-- [ ] T030 [P] [US4] 單元測試：Scramble 前端邏輯 (frontend/tests/unit/scramble.test.ts)
-- [ ] T031 [US4] 整合測試：生成打亂 → 應用到 CubeState → 驗證可解 (backend/tests/integration/test_scramble_flow.py)
-- [ ] T032 [US4] E2E 測試：啟動應用 → 驗證打亂顯示 → 重新打亂 (frontend/tests/e2e/scramble.spec.ts)
+- [X] T027 [P] [US4] 契約測試：POST /api/scramble/generate (backend/tests/contract/test_scramble_api.py)
+- [X] T028 [P] [US4] 契約測試：GET /api/scramble/{seed} (backend/tests/contract/test_scramble_api.py)
+- [X] T029 [P] [US4] 單元測試：ScrambleService (backend/tests/unit/test_scramble_service.py) - 確定性 RNG, 25 moves
+- [X] T030 [P] [US4] 單元測試：Scramble 前端邏輯 (frontend/tests/unit/scramble.test.ts)
+- [X] T031 [US4] 整合測試：生成打亂 → 應用到 CubeState → 驗證可解 (backend/tests/integration/test_scramble_flow.py)
+- [X] T032 [US4] E2E 測試：啟動應用 → 驗證打亂顯示 → 重新打亂 (frontend/tests/e2e/scramble.spec.ts)
 
 ### 用戶故事 4 的實作
 
 > **前置條件**：測試 T027-T032 必須已編寫且失敗
 
-- [ ] T033 [P] [US4] 建立 Scramble 模型 (frontend/src/lib/cube/Scramble.ts) - seed, moves, moveCount, generate
-- [ ] T034 [P] [US4] 建立 Scramble 模型 (backend/src/models/scramble.py) - Scramble dataclass
-- [ ] T035 [US4] 實作 ScrambleService (backend/src/services/scramble_service.py) - generate_scramble(seed?), 確定性 RNG
-- [ ] T036 [US4] 實作 POST /api/scramble/generate (backend/src/api/routes/scramble.py)
-- [ ] T037 [US4] 實作 GET /api/scramble/{seed} (backend/src/api/routes/scramble.py)
-- [ ] T038 [US4] 實作 ScrambleButton 元件 (frontend/src/components/Controls/ScrambleButton.tsx)
-- [ ] T039 [US4] 整合 scramble 到 cubeStore (frontend/src/store/cubeStore.ts) - initializeScramble, regenerateScramble
-- [ ] T040 [US4] 實作啟動時自動打亂 (frontend/src/app/page.tsx) - useEffect 調用 initializeScramble
-- [ ] T041 [US4] 顯示 seed 在 UI (frontend/src/components/Controls/SeedDisplay.tsx)
-- [ ] T042 [US4] 驗證 100 次連續打亂可解性 (backend/tests/integration/test_scramble_reliability.py)
-- [ ] T043 [US4] 添加 scramble 文檔 (backend/src/api/routes/scramble.py docstrings)
-- [ ] T044 [US4] 代碼審查：linting 通過，無警告
-- [ ] T045 [US4] 性能驗證：打亂生成 <100ms (backend/tests/performance/test_scramble_perf.py)
+- [X] T033 [P] [US4] 建立 Scramble 模型 (frontend/src/lib/cube/Scramble.ts) - seed, moves, moveCount, generate
+- [X] T034 [P] [US4] 建立 Scramble 模型 (backend/src/models/scramble.py) - Scramble dataclass
+- [X] T035 [US4] 實作 ScrambleService (backend/src/services/scramble_service.py) - generate_scramble(seed?), 確定性 RNG
+- [X] T036 [US4] 實作 POST /api/scramble/generate (backend/src/api/routes/scramble.py)
+- [X] T037 [US4] 實作 GET /api/scramble/{seed} (backend/src/api/routes/scramble.py)
+- [X] T038 [US4] 實作 ScrambleButton 元件 (frontend/src/components/Controls/ScrambleButton.tsx)
+- [X] T039 [US4] 整合 scramble 到 cubeStore (frontend/src/store/cubeStore.ts) - initializeScramble, regenerateScramble
+- [X] T040 [US4] 實作啟動時自動打亂 (frontend/src/app/page.tsx) - useEffect 調用 initializeScramble
+- [X] T041 [US4] 顯示 seed 在 UI (frontend/src/components/Controls/SeedDisplay.tsx)
+- [X] T042 [US4] 驗證 100 次連續打亂可解性 (backend/tests/integration/test_scramble_reliability.py)
+- [X] T043 [US4] 添加 scramble 文檔 (backend/src/api/routes/scramble.py docstrings)
+- [X] T044 [US4] 代碼審查：linting 通過，無警告
+- [X] T045 [US4] 性能驗證：打亂生成 <100ms (backend/tests/performance/test_scramble_perf.py)
 
 **檢查點**：用戶故事 4 完成 - 應用程式可啟動並顯示合法打亂狀態
 

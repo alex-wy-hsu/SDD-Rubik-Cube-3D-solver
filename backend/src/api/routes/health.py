@@ -2,6 +2,7 @@
 Health check endpoints
 """
 from fastapi import APIRouter
+
 from ...database.repository import get_repository
 
 router = APIRouter()
@@ -22,7 +23,7 @@ async def readiness_check():
         "api": "healthy",
         "database": "unknown",
     }
-    
+
     # Check database connectivity
     try:
         repository = get_repository()
@@ -31,9 +32,9 @@ async def readiness_check():
     except Exception as e:
         checks["database"] = "unhealthy"
         print(f"Database health check error: {e}")
-    
+
     all_healthy = all(status == "healthy" for status in checks.values())
-    
+
     return {
         "status": "ready" if all_healthy else "not_ready",
         "checks": checks
